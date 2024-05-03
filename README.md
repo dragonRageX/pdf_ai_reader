@@ -13,3 +13,6 @@ This app was created to serve as a demo app for [create-singlestore-app](https:/
 ### ***SingleStoreDB***
 ### ***TypeScript***
 ### ***OpenAI API***
+
+![Screenshot (197)](https://github.com/dragonRageX/pdf_ai_reader/assets/114085260/07fc7cf1-0120-41f5-9120-bc310c30dc76)
+![Screenshot (198)](https://github.com/dragonRageX/pdf_ai_reader/assets/114085260/3f9acfca-7bf7-4d65-9db6-88b99946aa4e)
