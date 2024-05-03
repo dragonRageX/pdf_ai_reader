@@ -51,7 +51,7 @@ export default function App() {   //svg wave effect made using - https://getwave
                     )
                 }
             </div>
-            <textarea value={text} onChange={e => setText(e.target.value)} />
+            <textarea value={text} onChange={e => setText(e.target.value)} placeholder="Enter query here." />
             <button onClick={getResponse}>⇨</button>
         </div>
     );
