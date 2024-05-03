@@ -73,3 +73,13 @@ export async function selectTable({
         return error;
     }
 }
+
+export async function readData({ conn, database, embedding }: { conn?: mysql.Connection, database: string, embedding: number[] })
+{
+    try {
+        
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}

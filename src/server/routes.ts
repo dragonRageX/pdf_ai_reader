@@ -42,4 +42,23 @@ router.get("/api/database", async (req, res) => {
     res.json(sqlRes);
 });
 
+router.get("/api/database/:text", async (req, res) => {
+    const text = await req.params.text;
+    console.log(text);
+
+    const configuration = new Configuration({ apiKey: process.env.OPENAI_API_KEY });
+
+    try {
+        const openai = new OpenAIApi(configuration);
+        const response = await openai.createEmbedding({
+            model: "text-embedding-3-small",
+            input: text,
+        });
+        const embedding = response.data.data[0].embedding;
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 export default router;
