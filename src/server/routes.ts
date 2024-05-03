@@ -66,6 +66,17 @@ router.get("/api/database/:text", async (req, res) => {
         const sqlRes = await readData({ database: database, embedding: embedding });   //commpare the embeddings in database and user query embeddings generated; and get the most likely result
         console.log("Sql Response: ", sqlRes);
 
+        const prompt = `The user asked: ${text}. The most similar text from the book is: ${sqlRes.text}`;   //from the most likely database text embedding obtained, send this text to OpenAI again to format, frame it systematically so that it looks like a well-rounded response
+        const completion = await openai.chat.completions.create({
+            messages: [{"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}],
+            model: "gpt-3.5-turbo",
+        });
+        
+        const promptRes = completion.choices[0].message.content;
+        console.log(promptRes);
+        res.json(promptRes);      
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
