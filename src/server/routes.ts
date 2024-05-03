@@ -73,9 +73,9 @@ router.get("/api/database/:text", async (req, res) => {
             model: "gpt-3.5-turbo",
         });
         
-        const promptRes = completion.choices[0].message.content;
-        console.log(promptRes);
-        res.json(promptRes);      
+        const promptRes = completion.choices[0].message;
+        console.log("OpenAI prompt for db.query text: ",promptRes);
+        res.status(200).json(promptRes);      
 
     } catch (error) {
         console.error(error);
