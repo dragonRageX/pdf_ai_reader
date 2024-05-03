@@ -2,14 +2,18 @@ const express = require("express");
 import {
     getDatabases,
     selectTable,
+    readData
 } from "./connection";
 import * as fs from "fs";
 const dotenv = require("dotenv").config();
 const bodyParser = require("body-parser");
-const { Configuration, OpenAIApi } = require("openai");
+import OpenAI from "openai";
 
 const app = express();
 const router = express.Router();
+
+const database = 'reader_data';
+const table = 'my_book';
 
 router.get("/api/hello", (req, res, next) => {
     res.json("SingleStore");
@@ -46,18 +50,25 @@ router.get("/api/database/:text", async (req, res) => {
     const text = await req.params.text;
     console.log(text);
 
-    const configuration = new Configuration({ apiKey: process.env.OPENAI_API_KEY });
-
     try {
-        const openai = new OpenAIApi(configuration);
-        const response = await openai.createEmbedding({
+
+        const openai = new OpenAI();
+
+        const response = await openai.embeddings.create({
             model: "text-embedding-3-small",
             input: text,
         });
-        const embedding = response.data.data[0].embedding;
-        console.log(response);
+
+        const embedding = response.data[0].embedding;
+
+        // console.log("Query Text Embedding:" + embedding);
+
+        const sqlRes = await readData({ database: database, embedding: embedding });   //commpare the embeddings in database and user query embeddings generated; and get the most likely result
+        console.log("Sql Response: ", sqlRes);
+
     } catch (error) {
         console.error(error);
+        res.status(500).json({ error: "Internal server error" });
     }
 });
 
