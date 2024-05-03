@@ -9,7 +9,7 @@ This app was created to serve as a demo app for [create-singlestore-app](https:/
 
 ## Technologies Used:
 
-### ***Langchain***
+### ***LangChain***
 ### ***SingleStoreDB***
 ### ***TypeScript***
 ### ***OpenAI API***
