@@ -12,7 +12,14 @@ This app was created to serve as a demo app for [create-singlestore-app](https:/
 ### ***LangChain***
 ### ***SingleStoreDB***
 ### ***TypeScript***
+### ***Node.js & Express.js***
 ### ***OpenAI API***
+
+<hr/>
+
+> [!NOTE]
+> Use and run the *langchain_pdf.ipynb* file in the SingleStoreDB Develop Environment
+> (It includes the Python + SQL + Markdown code formats and thus would be helpful in creating the SingleStoreDB database in the workspace there itself).
 
 <hr/>
 <br />
